@@ -1,15 +1,15 @@
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { database } from "src/database/connectionDB";
 import { Criptografar } from "src/functions/cripto";
 @Injectable()
 export class InsertService {
     async criarUsuario(usuario: usuario): Promise<criacaoUsuario> {
         try {
-            const senhaCriptografada = Criptografar(usuario.senha)
+            usuario.senha = Criptografar(usuario.senha)
             const InsertUsuario = `
                 INSERT INTO public.usuario
                 (nome, senha, email)
-                VALUES('${usuario.nome}', '${senhaCriptografada}', '${usuario.email}')
+                VALUES('${usuario.nome}', '${usuario.senha}', '${usuario.email}')
                 RETURNING *
             `
             const usuarioCriado = await database.query(InsertUsuario)
@@ -22,7 +22,7 @@ export class InsertService {
                 }
             }
         } catch (error) {
-            throw new InternalServerErrorException(error.message || error)
+            throw new HttpException("Erro ao criar usuario: " + error.message || error, HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
 }
