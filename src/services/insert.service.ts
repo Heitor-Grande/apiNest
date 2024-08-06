@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { database } from "src/database/connectionDB";
 import { Criptografar } from "src/functions/cripto";
 import { Response, Request } from "express";

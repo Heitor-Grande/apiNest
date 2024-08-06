@@ -1,4 +1,4 @@
-import { Injectable, NestMiddleware, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, NestMiddleware } from '@nestjs/common';
 import { configDotenv } from 'dotenv';
 import { Request, Response, NextFunction } from 'express';
 configDotenv()
