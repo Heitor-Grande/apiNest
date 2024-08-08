@@ -1,4 +1,4 @@
-import { AES } from "crypto-js";
+import { AES, enc } from "crypto-js";
 import { configDotenv } from "dotenv";
 configDotenv()
 
@@ -7,5 +7,5 @@ export function Criptografar(info: string): string {
 }
 
 export function Descriptografar(info: string): string {
-    return AES.decrypt(info, process.env.KEY_CRYPTOJS).toString(CryptoJS.enc.Utf8)
+    return AES.decrypt(info, process.env.KEY_CRYPTOJS).toString(enc.Utf8)
 }
