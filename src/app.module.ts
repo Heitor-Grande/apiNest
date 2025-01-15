@@ -1,23 +1,13 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { AppController } from './app.controller';
+import { Module } from '@nestjs/common';
 import { AppService } from './app.service';
-import { InsertController } from './controllers/insert.controller';
-import { InsertService } from './services/insert.service';
-import { VerificaToken } from './middleware/verificaToken';
-import { DeleteController } from './controllers/delete.controller';
-import { DeleteService } from './services/delete.service';
-import { SelectController } from './controllers/select.controller';
-import { SelectService } from './services/select.service';
-import { UpdateController } from './controllers/update.controller';
-import { UpdateService } from './services/update.service';
+import { userModule } from './user/user.module';
+import { AppController } from './app.controller';
 
 @Module({
-  imports: [],
-  controllers: [AppController, InsertController, DeleteController, SelectController, UpdateController],
-  providers: [AppService, InsertService, DeleteService, SelectService, UpdateService],
+  imports: [userModule],
+  controllers: [AppController],
+  providers: [AppService],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(VerificaToken).forRoutes("*")
-  }
+export class AppModule {
+
 }
