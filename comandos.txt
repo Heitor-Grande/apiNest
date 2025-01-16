@@ -1,0 +1,9 @@
+*recomendo criar => controller, dto e service. nessa ordem.
+comandos:
+--controller
+nest generate controller <nome aqui>
+--service
+nest generate service <nome aqui>
+
+link para mais comandos:
+https://docs.nestjs.com/cli/usages

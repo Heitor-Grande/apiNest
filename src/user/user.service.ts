@@ -49,7 +49,7 @@ export class userService {
                 return "Usuário Atualizado com sucesso."
             }
             else {
-                throw new Error("Usuário não encontrado!")
+                throw new HttpException("Usuário não encontrado!", HttpStatus.NOT_FOUND)
             }
         } catch (error) {
             throw new HttpException(error.response || "Erro Inesperado", error.status || HttpStatus.INTERNAL_SERVER_ERROR)
