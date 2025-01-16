@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post, Get, Put } from "@nestjs/common"
+import { Body, Controller, Param, Post, Get, Put, Delete } from "@nestjs/common"
 import { userDto } from "./user.dto";
 import { userService } from "./user.service";
 //Controller => rota de acesso "/user"
@@ -20,7 +20,13 @@ export class userController {
 
     //atualiza usuario
     @Put("/atualizar/usuario/:idUsuario")
-    atualizarUser(@Param("idUsuario") idUser: string, @Body() user: userDto) {
+    atualizarUser(@Param("idUsuario") idUser: string, @Body() user: userDto): string {
         return this.userService.update(idUser, user)
+    }
+
+    //remove usuario da lista
+    @Delete("/remover/usuario/:idUsuario")
+    removerUser(@Param("idUsuario") idUser: string): string {
+        return this.userService.delete(idUser)
     }
 }
